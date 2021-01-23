@@ -11,8 +11,12 @@ class MarketCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICo
     private static var headerKind = "headerKind"
     private var headerIdentfier = "header"
     private var orderCellIdentfier = "orderCellIdentfier"
+    private var productsCells = "productsCells"
 
-    let customColors = StcColors()
+    private var tempDescArr = ["شريحة جوال وكويك نت","حول رقمك","تأسيس بيتي إنترنت"]
+    private var tempDisc = ["%15","%75","%20","جديد"]
+    private var tempArrOfHeadersNames = ["header1","header2","header3"]
+    private var tempColors = [customColors.lightRed,customColors.lightBlue]
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 6
@@ -24,16 +28,30 @@ class MarketCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICo
         
         if indexPath.section == 0{
             cell.backgroundColor = customColors.lightRed
+            cell.headerImage.image = UIImage(named: tempArrOfHeadersNames.randomElement()!)
         }
         else if indexPath.section == 1{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: orderCellIdentfier, for: indexPath) as! OrderCell
             cell.backgroundColor = customColors.lightGreen
-            cell.label.text = "شريحة جوال وكويك نت"
+            cell.label.text = tempDescArr.randomElement()
             cell.image.image = UIImage(systemName: "homekit")
             return cell
         }
         else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productsCells, for: indexPath) as! ProductsCell
+            cell.productImageView.image = UIImage(named: "iphone")
+            cell.productDiscountView.text = tempDisc.randomElement()
+            if cell.productDiscountView.text == "جديد"{
+                cell.productDiscountView.backgroundColor = customColors.lightBlue
+            }
+            else{
+                cell.productDiscountView.backgroundColor = customColors.lightRed
+            }
+            cell.categoryNameLabel.text = "سامسونج"
+            cell.productNameLabel.text = "iPhone 12 Max"
+            cell.priceLabel.text = "من 3799.50 ريال"
             cell.backgroundColor = .white
+            return cell
         }
         return cell
     }

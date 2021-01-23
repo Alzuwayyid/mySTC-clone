@@ -6,9 +6,11 @@
 //
 
 import UIKit
+let customColors = StcColors()
 
 class MarketCategoriesCollectionViewCell: UICollectionViewCell {
-    
+
+    @IBOutlet var headerImage: UIImageView!
     override func layoutSubviews() {
         super.layoutSubviews()
 
@@ -48,6 +50,77 @@ class Header: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+class ProductsCell: UICollectionViewCell {
+    let categoryNameLabel = UILabel()
+    let productNameLabel = UILabel()
+    let productImageView = UIImageView()
+    let priceLabel = UILabel()
+    let productDiscountView = UILabel(frame: CGRect(x: 20, y: 20, width: 10, height: 10))
+    
+    override init(frame: CGRect){
+        super.init(frame: frame)
+        setupCell()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupCell(){
+        self.layer.masksToBounds = true
+        addSubviews(categoryNameLabel,productNameLabel,productImageView,productDiscountView,priceLabel)
+        
+        productImageView.setConstraints([
+            .top(padding: 10, from: productDiscountView.bottomAnchor),
+            .right(padding: -5, from: rightAnchor),
+            .left(padding: 5, from: leftAnchor),
+            .height(80),
+            .width(50)
+        ])
+        
+        productDiscountView.setConstraints([
+            .leading(padding: 0, from: leadingAnchor),
+            .trailing(padding: 10, from: trailingAnchor),
+            .horizontal(padding: 80),
+            .height(23)
+        ])
+        
+        categoryNameLabel.setConstraints([
+            .top(padding: 3, from: productImageView.bottomAnchor),
+            .left(padding: 11, from: leftAnchor),
+        ])
+        
+        productNameLabel.setConstraints([
+            .top(padding: -6, from: categoryNameLabel.bottomAnchor),
+            .left(padding: 10, from: leftAnchor),
+            .right(padding: 10, from: rightAnchor)
+        ])
+        
+        priceLabel.setConstraints([
+            .top(padding: -1, from: productNameLabel.bottomAnchor),
+            .left(padding: 10, from: leftAnchor),
+        ])
+        
+        priceLabel.font = UIFont(name: "stc", size: 16)
+        priceLabel.textColor = customColors.purple
+        
+        productNameLabel.font = UIFont(name: "stc", size: 17)
+        productNameLabel.textColor = .black
+        productNameLabel.textAlignment = .left
+
+        categoryNameLabel.font = UIFont(name: "stc", size: 12)
+        categoryNameLabel.textColor = .systemGray
+        
+        productDiscountView.backgroundColor = customColors.lightBlue
+        productDiscountView.font = UIFont(name: "stc", size: 12)
+        productDiscountView.textColor = .white
+        productDiscountView.textAlignment = .center
+        productImageView.contentMode = .scaleAspectFit
+//        productImageView.backgroundColor = .systemRed
+    }
+}
+
 
 class OrderCell: UICollectionViewCell {
     let image = UIImageView()

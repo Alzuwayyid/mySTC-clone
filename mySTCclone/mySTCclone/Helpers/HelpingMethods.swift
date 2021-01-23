@@ -13,3 +13,11 @@ struct StcColors{
     var lightRed = UIColor(named: "LightRed")
     var lightGreen = UIColor(named: "LightGreen")
 }
+
+extension UIView {
+    func addSubviews(_ views: UIView...) {
+        for view in views {
+            self.addSubview(view)
+        }
+    }
+}

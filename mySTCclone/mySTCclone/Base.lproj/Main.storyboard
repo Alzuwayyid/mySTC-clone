@@ -61,7 +61,21 @@
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Uc0-yR-g5h">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s8x-E1-ceZ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="s8x-E1-ceZ" firstAttribute="top" secondItem="Uc0-yR-g5h" secondAttribute="top" id="KjU-ZO-IqV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="s8x-E1-ceZ" secondAttribute="trailing" id="VPw-85-UWc"/>
+                                                        <constraint firstItem="s8x-E1-ceZ" firstAttribute="leading" secondItem="Uc0-yR-g5h" secondAttribute="leading" id="WYE-Gc-pwZ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="s8x-E1-ceZ" secondAttribute="bottom" id="qJU-Qn-fOa"/>
+                                                    </constraints>
                                                 </collectionViewCellContentView>
+                                                <connections>
+                                                    <outlet property="headerImage" destination="s8x-E1-ceZ" id="Pkr-2u-PRq"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
