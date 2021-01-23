@@ -13,7 +13,8 @@ class MarketController: UIViewController{
     let collectionViewDataSource = MarketCollectionViewDataSource()
     private var headerIdentfier = "header"
     private static var headerKind = "headerKind"
-    
+    private var orderCellIdentfier = "orderCellIdentfier"
+
     @IBOutlet var label: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var categoriesCollectionView: UICollectionView!
@@ -30,5 +31,6 @@ class MarketController: UIViewController{
         // MARK: - Configuration
         categoriesCollectionView.collectionViewLayout = collectionViewDataSource.createLayout()
         categoriesCollectionView.register(Header.self, forSupplementaryViewOfKind: MarketController.headerKind, withReuseIdentifier: headerIdentfier)
+        categoriesCollectionView.register(OrderCell.self, forCellWithReuseIdentifier: orderCellIdentfier)
     }
 }

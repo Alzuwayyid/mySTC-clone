@@ -48,3 +48,43 @@ class Header: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+class OrderCell: UICollectionViewCell {
+    let image = UIImageView()
+    let label = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUpCell()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setUpCell() {
+        self.layer.masksToBounds = true
+        
+        addSubview(label)
+        addSubview(image)
+        label.setConstraints([
+            .leading(padding: 0, from: image.trailingAnchor),
+            .vertical(padding: 26),
+            .trailing(padding: 0, from: trailingAnchor),
+            .horizontal(padding: 4)
+        ])
+        image.setConstraints([
+            .leading(padding: 0, from: leadingAnchor),
+            .trailing(padding: 15, from: trailingAnchor),
+            .horizontal(padding: 110),
+            .height(30)
+        ])
+        label.font = UIFont(name: "stc", size: 18)
+        label.textColor = .white
+        label.textAlignment = .right
+        label.numberOfLines = 0
+        
+        image.contentMode = .scaleAspectFit
+        image.tintColor = .white
+    }
+}

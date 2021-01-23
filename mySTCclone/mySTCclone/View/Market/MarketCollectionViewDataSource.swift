@@ -10,6 +10,8 @@ import UIKit
 class MarketCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate{
     private static var headerKind = "headerKind"
     private var headerIdentfier = "header"
+    private var orderCellIdentfier = "orderCellIdentfier"
+
     let customColors = StcColors()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -24,7 +26,11 @@ class MarketCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICo
             cell.backgroundColor = customColors.lightRed
         }
         else if indexPath.section == 1{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: orderCellIdentfier, for: indexPath) as! OrderCell
             cell.backgroundColor = customColors.lightGreen
+            cell.label.text = "شريحة جوال وكويك نت"
+            cell.image.image = UIImage(systemName: "homekit")
+            return cell
         }
         else{
             cell.backgroundColor = .white
@@ -38,10 +44,14 @@ class MarketCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentfier, for: indexPath) as! Header
-        if indexPath.section == 0 {
+        if indexPath.section == 1 {
             header.label.text = "اطلب رقم جديد"
             header.label.font = UIFont(name: "stc", size: 20)
-        }else{
+        }
+        else if indexPath.section == 0{
+            
+        }
+        else{
             header.label.text = "أحدث الاجهزة"
             header.label.font = UIFont(name: "stc", size: 20)
         }
