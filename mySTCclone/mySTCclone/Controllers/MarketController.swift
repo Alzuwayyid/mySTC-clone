@@ -17,6 +17,7 @@ class MarketController: UIViewController{
     @IBOutlet var label: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var categoriesCollectionView: UICollectionView!
+    @IBOutlet var adsCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

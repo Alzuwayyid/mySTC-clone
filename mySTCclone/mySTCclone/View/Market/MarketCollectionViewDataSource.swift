@@ -21,8 +21,12 @@ class MarketCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MarketCategoriesCollectionViewCell
         
         if indexPath.section == 0{
+            cell.backgroundColor = customColors.lightRed
+        }
+        else if indexPath.section == 1{
             cell.backgroundColor = customColors.lightGreen
-        }else{
+        }
+        else{
             cell.backgroundColor = .white
         }
         return cell
@@ -38,7 +42,7 @@ class MarketCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICo
             header.label.text = "اطلب رقم جديد"
             header.label.font = UIFont(name: "stc", size: 20)
         }else{
-            header.label.text = "الاجهزة"
+            header.label.text = "أحدث الاجهزة"
             header.label.font = UIFont(name: "stc", size: 20)
         }
         return header
@@ -51,7 +55,26 @@ extension MarketCollectionViewDataSource{
         
         return UICollectionViewCompositionalLayout { (section, env) -> NSCollectionLayoutSection in
             
-            if section == 0 {
+            if section == 0{
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(370), heightDimension: .estimated(200))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .continuous
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0 , leading: 15, bottom: 0, trailing: 15)
+                section.interGroupSpacing = 10
+                section.contentInsets.bottom = 5
+                
+                section.boundarySupplementaryItems = [
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50)), elementKind: MarketCollectionViewDataSource.headerKind, alignment: .topLeading)
+                ]
+                
+                return section
+            }
+            else if section == 1 {
                 
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
